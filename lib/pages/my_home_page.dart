@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:resume/constants/app_colors.dart';
 import 'package:resume/constants/app_dimensions.dart';
 import 'package:resume/model/experience.dart';
+import 'package:resume/model/profile.dart';
 import 'package:resume/pages/main_edit_page.dart';
 
 import '../constants/app_strings.dart';
@@ -17,16 +18,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String name = 'OJO MUTIU',
-      role = 'Mobile Application Developer',
-      phoneNumber = '+234 8168051247',
-      email = 'sourcecode.wildtech@gmail.com',
-      summary = 'I am Mutiu, a mobile app developer with a passion for '
-          'creating innovative and user-friendly applications. Expertise in Java, '
-          'Flutter, and other mobile development technologies. '
-          'I am a highly motivated and results-oriented individual with a strong '
-          'work ethic. I am always eager to learn new things and take on new challenges.';
-
   @override
   Widget build(BuildContext context) {
     AppDimensions().init(context);
@@ -127,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(name,
+                            Text(profile.getName(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
@@ -138,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontSize:
                                             AppDimensions.height20 * 1.3)),
                             Text(
-                              role,
+                              profile.getRole(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -148,9 +139,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               direction: Axis.horizontal,
                               children: [
                                 ContactTag(
-                                    contact: phoneNumber, icon: Icons.phone),
+                                    contact: profile.getPhoneNumber(),
+                                    icon: Icons.phone),
                                 ContactTag(
-                                    contact: email,
+                                    contact: profile.getEmail(),
                                     icon: Icons.mail_outline_outlined),
                               ],
                             ),
@@ -184,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: AppDimensions.height6),
                     Text(
-                      summary,
+                      profile.getSummary(),
                       textAlign: TextAlign.justify,
                       style: Theme.of(context)
                           .textTheme
@@ -222,14 +214,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         itemCount: experienceModel.length,
                         itemBuilder: (context, index) {
                           return Experience(
-                            roleTitle: experienceModel[index].role,
+                            roleTitle: experienceModel[index].getRole(),
                             roleIndication:
-                                '${experienceModel[index].startDate} - ${experienceModel[index].endDate}',
-                            company: experienceModel[index].company,
-                            location: experienceModel[index].location,
+                                '${experienceModel[index].getStartDate()} - ${experienceModel[index].getEndDate()}',
+                            company: experienceModel[index].getCompany(),
+                            location: experienceModel[index].getLocation(),
                             companyDesc:
-                                experienceModel[index].companyDescription,
-                            operation: experienceModel[index].operation,
+                                experienceModel[index].getCompanyDescription(),
+                            operation: experienceModel[index].getOperations(),
                           );
                         })
                   ],

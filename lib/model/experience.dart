@@ -1,5 +1,3 @@
-import 'operation.dart';
-
 class ExperienceModel {
   String role, company, startDate, endDate, location, companyDescription;
   List<String> operation;
@@ -56,8 +54,8 @@ List<ExperienceModel> experienceModel = [
   ExperienceModel(
       role: 'Mobile App Dev',
       company: 'Credevnet Tech',
-      startDate: '2023',
-      endDate: '2023',
+      startDate: 'March 2023',
+      endDate: 'July 2023',
       location: 'Abuja, Nigeria',
       companyDescription: 'Credevnet Technologies is a software development '
           'firm committed to making and delivering robust ICT solutions',
