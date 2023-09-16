@@ -479,55 +479,264 @@ class _MainEditPageState extends State<MainEditPage> {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: experienceModel.length,
                             itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        experienceModel[index].getRole(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                                color: AppColors
-                                                    .secondaryTextColor),
-                                      ),
-                                      Text(
-                                          '${experienceModel[index].getStartDate()} - ${experienceModel[index].getEndDate()}',
+                              return GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius
+                                                  .circular(AppDimensions
+                                                      .getProportionalScreenHeight(
+                                                          4))),
+                                          title: SizedBox(
+                                              width: double.maxFinite,
+                                              child: Text('Experience')),
+                                          content: SingleChildScrollView(
+                                            child: Column(
+                                              children: [
+                                                TextField(
+                                                  autofocus: true,
+                                                  decoration: InputDecoration(
+                                                    focusedBorder:
+                                                        OutlineInputBorder(),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(),
+                                                    hintText:
+                                                        experienceModel[index]
+                                                            .getRole(),
+                                                  ),
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      experienceModel[index]
+                                                          .setRole(value);
+                                                    });
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                    height:
+                                                        AppDimensions.height20),
+                                                TextField(
+                                                  autofocus: true,
+                                                  decoration: InputDecoration(
+                                                      focusedBorder:
+                                                          const OutlineInputBorder(),
+                                                      enabledBorder:
+                                                          const OutlineInputBorder(),
+                                                      hintText:
+                                                          experienceModel[index]
+                                                              .getCompany()),
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      experienceModel[index]
+                                                          .setCompany(value);
+                                                    });
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                    height:
+                                                        AppDimensions.height20),
+                                                TextField(
+                                                  autofocus: true,
+                                                  decoration: InputDecoration(
+                                                    focusedBorder:
+                                                        OutlineInputBorder(),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(),
+                                                    hintText: experienceModel[
+                                                            index]
+                                                        .getCompanyDescription(),
+                                                  ),
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      experienceModel[index]
+                                                          .setCompanyDescription(
+                                                              value);
+                                                    });
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                    height:
+                                                        AppDimensions.height20),
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: TextField(
+                                                        autofocus: true,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          focusedBorder:
+                                                              OutlineInputBorder(),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(),
+                                                          hintText:
+                                                              experienceModel[
+                                                                      index]
+                                                                  .getStartDate(),
+                                                        ),
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            experienceModel[
+                                                                    index]
+                                                                .setStartDate(
+                                                                    value);
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                        width: AppDimensions
+                                                                .width10 *
+                                                            2),
+                                                    Expanded(
+                                                      child: TextField(
+                                                        autofocus: true,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          focusedBorder:
+                                                              OutlineInputBorder(),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(),
+                                                          hintText:
+                                                              experienceModel[
+                                                                      index]
+                                                                  .getEndDate(),
+                                                        ),
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            experienceModel[
+                                                                    index]
+                                                                .setEndDate(
+                                                                    value);
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                    height:
+                                                        AppDimensions.height20),
+                                                TextField(
+                                                  autofocus: true,
+                                                  decoration: InputDecoration(
+                                                    focusedBorder:
+                                                        OutlineInputBorder(),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(),
+                                                    hintText: 'Activity',
+                                                  ),
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      experienceModel[index]
+                                                          .addOperationItem(
+                                                              value);
+                                                    });
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                    height:
+                                                        AppDimensions.height20),
+                                                TextField(
+                                                  autofocus: true,
+                                                  decoration: InputDecoration(
+                                                    focusedBorder:
+                                                        OutlineInputBorder(),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(),
+                                                    hintText: 'Activity',
+                                                  ),
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      experienceModel[index]
+                                                          .addOperationItem(
+                                                              value);
+                                                    });
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                    height:
+                                                        AppDimensions.height20 *
+                                                            2),
+                                              ],
+                                            ),
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text(AppStrings.cancel)),
+                                            TextButton(
+                                                onPressed: () {
+                                                  //get the text in the textField via the pop() method
+                                                  Navigator.of(context).pop();
+
+                                                  summaryController.clear();
+                                                },
+                                                child: Text(
+                                                  AppStrings.save,
+                                                  style: const TextStyle(
+                                                      color:
+                                                          AppColors.mainColor),
+                                                )),
+                                          ],
+                                        );
+                                      });
+                                },
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          experienceModel[index].getRole(),
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium
                                               ?.copyWith(
                                                   color: AppColors
-                                                      .secondaryTextColor)),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        experienceModel[index].getCompany(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                                color: AppColors
-                                                    .secondaryTextColor),
-                                      ),
-                                      Text(experienceModel[index].getLocation(),
+                                                      .secondaryTextColor),
+                                        ),
+                                        Text(
+                                            '${experienceModel[index].getStartDate()} - ${experienceModel[index].getEndDate()}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                    color: AppColors
+                                                        .secondaryTextColor)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          experienceModel[index].getCompany(),
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium
                                               ?.copyWith(
                                                   color: AppColors
-                                                      .secondaryTextColor)),
-                                    ],
-                                  ),
-                                  SizedBox(height: AppDimensions.height10),
-                                ],
+                                                      .secondaryTextColor),
+                                        ),
+                                        Text(
+                                            experienceModel[index]
+                                                .getLocation(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.copyWith(
+                                                    color: AppColors
+                                                        .secondaryTextColor)),
+                                      ],
+                                    ),
+                                    SizedBox(height: AppDimensions.height10),
+                                  ],
+                                ),
                               );
                             }),
                       ],
