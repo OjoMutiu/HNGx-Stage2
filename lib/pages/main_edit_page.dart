@@ -410,6 +410,7 @@ class _MainEditPageState extends State<MainEditPage> {
                 ],
               ),
             ),
+            SizedBox(height: AppDimensions.height10),
             //Experience Edit
             Container(
               padding: EdgeInsets.symmetric(

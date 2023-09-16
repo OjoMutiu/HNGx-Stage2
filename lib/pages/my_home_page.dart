@@ -43,17 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       const Icon(Icons.edit),
                     ]),
               ),
-              const PopupMenuItem(
-                value: 2,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Settings'),
-                      Icon(Icons.settings),
-                    ]),
-              ),
               PopupMenuItem(
-                value: 3,
+                value: 2,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -239,20 +230,11 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         setState(() {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return MainEditPage();
+            return const MainEditPage();
           }));
         });
         break;
       case 2:
-        setState(() {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return Container(
-              color: Colors.green,
-            );
-          }));
-        });
-        break;
-      case 3:
         SystemNavigator.pop();
         break;
     }
