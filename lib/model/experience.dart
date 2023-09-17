@@ -36,11 +36,6 @@ class ExperienceModel {
 
   addOperationItem(value) => operation.add(value);
   deleteOperationItem(value) => operation.removeAt(value);
-
-  getExperienceModelList() => experienceModel;
-  addToExperienceModel(ExperienceModel experience) {
-    experienceModel.add(experience);
-  }
 }
 
 List<String> operations = [
@@ -53,7 +48,7 @@ List<String> operations = [
 List<ExperienceModel> experienceModel = [
   ExperienceModel(
       role: 'Mobile App Dev',
-      company: 'Credevnet Tech',
+      company: 'Credevnet Technology',
       startDate: 'March 2023',
       endDate: 'July 2023',
       location: 'Abuja, Nigeria',
@@ -61,3 +56,7 @@ List<ExperienceModel> experienceModel = [
           'firm committed to making and delivering robust ICT solutions',
       operation: operations)
 ];
+getExperienceModelList() => experienceModel;
+addToExperienceModel(ExperienceModel experience) {
+  experienceModel.add(experience);
+}

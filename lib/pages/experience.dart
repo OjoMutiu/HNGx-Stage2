@@ -45,8 +45,10 @@ class _ExperienceEditState extends State<ExperienceEdit> {
 
   @override
   Widget build(BuildContext context) {
+    String role = 'Role';
+
     ExperienceModel experience = ExperienceModel(
-        role: 'Role',
+        role: role,
         company: 'Company',
         startDate: 'StartDate',
         endDate: 'EndDate',
@@ -71,7 +73,6 @@ class _ExperienceEditState extends State<ExperienceEdit> {
                 children: [
                   TextField(
                     autofocus: true,
-                    controller: experienceRoleController,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(),
