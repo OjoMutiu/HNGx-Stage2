@@ -17,7 +17,8 @@ class _ExperienceEditState extends State<ExperienceEdit> {
       experienceCompany,
       experienceLocation,
       experienceCompanyDescription,
-      experienceOperation;
+      experienceOperation1,
+      experienceOperation2;
 
   @override
   void initState() {
@@ -28,7 +29,8 @@ class _ExperienceEditState extends State<ExperienceEdit> {
     experienceCompany = TextEditingController();
     experienceLocation = TextEditingController();
     experienceCompanyDescription = TextEditingController();
-    experienceOperation = TextEditingController();
+    experienceOperation1 = TextEditingController();
+    experienceOperation2 = TextEditingController();
   }
 
   @override
@@ -40,26 +42,18 @@ class _ExperienceEditState extends State<ExperienceEdit> {
     experienceCompany.dispose();
     experienceLocation.dispose();
     experienceCompanyDescription.dispose();
-    experienceOperation.dispose();
+    experienceOperation1.dispose();
+    experienceOperation2.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    String role = 'Role';
-
-    ExperienceModel experience = ExperienceModel(
-        role: role,
-        company: 'Company',
-        startDate: 'StartDate',
-        endDate: 'EndDate',
-        location: 'Location',
-        companyDescription: 'Company Description',
-        operation: []);
+    ExperienceModel experience;
 
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text('Add Experience'),
+          title: const Text('Add Experience'),
         ),
         body: Container(
           padding: EdgeInsets.symmetric(
@@ -73,43 +67,35 @@ class _ExperienceEditState extends State<ExperienceEdit> {
                 children: [
                   TextField(
                     autofocus: true,
+                    controller: experienceRoleController,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(),
-                      hintText: experience.getRole(),
+                      hintText: 'Role',
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        experience.setRole(value);
-                      });
-                    },
+                    onChanged: (value) {},
                   ),
                   SizedBox(height: AppDimensions.height20),
                   TextField(
                     autofocus: true,
+                    controller: experienceCompany,
                     decoration: InputDecoration(
-                        focusedBorder: const OutlineInputBorder(),
-                        enabledBorder: const OutlineInputBorder(),
-                        hintText: experience.getCompany()),
-                    onChanged: (value) {
-                      setState(() {
-                        experience.setCompany(value);
-                      });
-                    },
+                      focusedBorder: const OutlineInputBorder(),
+                      enabledBorder: const OutlineInputBorder(),
+                      hintText: "Company",
+                    ),
+                    onChanged: (value) {},
                   ),
                   SizedBox(height: AppDimensions.height20),
                   TextField(
                     autofocus: true,
+                    controller: experienceCompanyDescription,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(),
-                      hintText: experience.getCompanyDescription(),
+                      hintText: "Company Description",
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        experience.setCompanyDescription(value);
-                      });
-                    },
+                    onChanged: (value) {},
                   ),
                   SizedBox(height: AppDimensions.height20),
                   Row(
@@ -117,33 +103,26 @@ class _ExperienceEditState extends State<ExperienceEdit> {
                       Expanded(
                         child: TextField(
                           autofocus: true,
-                          decoration: InputDecoration(
+                          controller: experienceStartDate,
+                          decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(),
-                            hintText: experience.getStartDate(),
+                            hintText: "Start Date",
                           ),
-                          onChanged: (value) {
-                            setState(() {
-                              experience.setStartDate(value);
-                            });
-                          },
+                          onChanged: (value) {},
                         ),
                       ),
                       SizedBox(width: AppDimensions.width10 * 2),
                       Expanded(
                         child: TextField(
                           autofocus: true,
-                          controller: experienceRoleController,
-                          decoration: InputDecoration(
+                          controller: experienceEndDate,
+                          decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(),
                             enabledBorder: OutlineInputBorder(),
-                            hintText: experience.getEndDate(),
+                            hintText: "End Date",
                           ),
-                          onChanged: (value) {
-                            setState(() {
-                              experience.setEndDate(value);
-                            });
-                          },
+                          onChanged: (value) {},
                         ),
                       ),
                     ],
@@ -151,28 +130,27 @@ class _ExperienceEditState extends State<ExperienceEdit> {
                   SizedBox(height: AppDimensions.height20),
                   TextField(
                     autofocus: true,
-                    decoration: InputDecoration(
+                    controller: experienceOperation1,
+                    decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(),
                       hintText: 'Activity',
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        experience.addOperationItem(value);
-                      });
-                    },
+                    onChanged: (value) {},
                   ),
                   SizedBox(height: AppDimensions.height20),
                   TextField(
                     autofocus: true,
-                    decoration: InputDecoration(
+                    controller: experienceOperation2,
+                    decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(),
                       hintText: 'Activity',
                     ),
                     onChanged: (value) {
                       setState(() {
-                        experience.addOperationItem(value);
+                        operations.add(value);
+                        // experience.addOperationItem(value);
                       });
                     },
                   ),
@@ -181,8 +159,19 @@ class _ExperienceEditState extends State<ExperienceEdit> {
                     width: double.maxFinite,
                     child: ElevatedButton(
                         onPressed: () {
-                          // experienceModel.add(experience);
-                          // Navigator.of(context).pop();
+                          //print(experience.getRole());
+                          experienceModel.add(experience = ExperienceModel(
+                            role: experienceRoleController.text,
+                            company: experienceCompany.text,
+                            startDate: experienceStartDate.text,
+                            endDate: experienceEndDate.text,
+                            location: 'location',
+                            companyDescription:
+                                experienceCompanyDescription.text,
+                            operation: operations,
+                          ));
+                          print(experience.getRole());
+                          Navigator.of(context).pop(experience);
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:

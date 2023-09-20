@@ -34,6 +34,10 @@ class _MainEditPageState extends State<MainEditPage> {
     phoneNumberController = TextEditingController();
     emailController = TextEditingController();
     summaryController = TextEditingController();
+    //Todo: immediate update of experience model acrros all pages
+    setState(() {
+      experienceModel;
+    });
   }
 
   @override
